@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitor de Rutas Zona Sur — Mercado Libre</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #12141D; margin: 0; padding: 20px; color: #E0E6ED; }
+    
+    /* ENCABEZADO PREMIUM MERCADO LIBRE */
+    .app-header { 
+      background: linear-gradient(135deg, #FFE600 0%, #E6CF00 100%); 
+      color: #2D3277; 
+      padding: 16px 24px; 
+      border-radius: 12px; 
+      font-size: 15pt; 
+      font-weight: 800; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      border-bottom: 4px solid #1C2042;
+      box-shadow: 0 8px 20px rgba(255, 230, 0, 0.15);
+    }
+    
+    .brand-container { display: flex; align-items: center; gap: 12px; }
+    .brand-logo { height: 32px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+    .status-tag { font-size: 8.5pt; background-color: #1C2042; color: #FFE600; padding: 6px 14px; border-radius: 20px; font-weight: 700; letter-spacing: 0.5px; }
+
+    /* NAVEGACIÓN POR PESTAÑAS */
+    .nav-tabs { display: flex; gap: 10px; margin-top: 15px; }
+    .tab-btn { 
+      background-color: #1A1D2D; 
+      color: #8A94A6; 
+      border: 1px solid #2A2E45; 
+      padding: 12px 24px; 
+      border-radius: 10px 10px 0 0; 
+      font-weight: 800; 
+      cursor: pointer; 
+      font-size: 10pt; 
+      transition: all 0.2s; 
+    }
+    .tab-btn.active { 
+      background-color: #23273A; 
+      color: #FFE600; 
+      border-color: #FFE600 #FFE600 transparent #FFE600; 
+      box-shadow: 0 -4px 10px rgba(255, 230, 0, 0.1); 
+    }
+    .tab-btn:hover:not(.active) { background-color: #252A40; color: #FFF; }
+
+    .tab-content { display: none; }
+    .tab-content.active { 
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    /* PANEL DE CONTROL EN GRID */
+    .control-panel { 
+      background-color: #1A1D2D; 
+      padding: 16px 20px; 
+      border-radius: 0 12px 12px 12px; 
+      border: 1px solid #2A2E45;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+      display: grid; 
+      grid-template-columns: minmax(250px, 1fr) auto; 
+      gap: 15px; 
+      align-items: center; 
+    }
+    
+    @media (max-width: 768px) {
+      .control-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .control-group { display: flex; flex-direction: column; gap: 6px; }
+    .control-group.actions { display: flex; flex-direction: row; gap: 10px; align-self: end; }
+    .control-label { font-size: 8pt; font-weight: 700; color: #8A94A6; text-transform: uppercase; letter-spacing: 0.8px; }
+    .input-control { 
+      padding: 9px 14px; 
+      font-size: 9.5pt; 
+      border: 1px solid #333852; 
+      border-radius: 8px; 
+      background-color: #23273A; 
+      color: #FFF;
+      font-weight: 600; 
+      outline: none;
+      transition: all 0.2s;
+    }
+    .input-control:focus { border-color: #FFE600; }
+    
+    /* BOTONES */
+    .btn-action { 
+      background: linear-gradient(135deg, #2D3277 0%, #1F2357 100%); 
+      color: #FFFFFF; 
+      border: 1px solid #3D4494; 
+      padding: 10px 18px; 
+      border-radius: 8px; 
+      font-weight: 700; 
+      cursor: pointer; 
+      font-size: 9pt; 
+      transition: all 0.2s ease; 
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-action:hover { background: #393E8F; transform: translateY(-1px); }
+    .btn-reset { background: linear-gradient(135deg, #C0392B 0%, #962B20 100%); border-color: #E74C3C; }
+    .btn-reset:hover { background: #D94332; }
+
+    .btn-copy {
+      background-color: #23273A;
+      border: 1px solid #3A3F5E;
+      color: #FFE600;
+      border-radius: 4px;
+      padding: 2px 6px;
+      margin-left: 6px;
+      font-size: 8pt;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-copy:hover { background-color: #FFE600; color: #12141D; }
+
+    /* KPIS EN GRID */
+    .kpi-grid { 
+      display: grid; 
+      grid-template-columns: repeat(3
